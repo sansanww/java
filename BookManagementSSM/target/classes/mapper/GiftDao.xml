@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ddu.dao.GiftDao">
+    <select id="queryGiftById" resultType="int" resultMap="gift">
+        SELECT * FROM gift WHERE giftId=#{giftId}
+    </select>
+    <resultMap id="gift" type="com.ddu.entity.Gift">
+        <id column="giftId" property="giftId"/>
+        <result column="giftName" property="giftName"/>
+    </resultMap>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ddu.dao.BookDao">
+    <select id="queryById" resultMap="book" parameterType="long">
+        SELECT b.book_id,b.name,b.number
+        FROM book b
+        WHERE b.book_id=#{bookId}
+    </select>
+
+    <select id="queryAll" resultMap="book">
+        SELECT b.book_id,b.name,b.number
+        FROM book b
+        ORDER BY b.book_id
+        LIMIT #{offset},#{limit}
+    </select>
+
+    <update id="reduceNumber">
+        UPDATE book
+        SET number=number-1
+        WHERE book_id = #{bookId}
+        AND number>0;
+    </update>
+
+    <resultMap id="book" type="com.ddu.entity.Book">
+        <id column="book_id" property="bookId"/>
+        <result column="name" property="name"/>
+        <result column="number" property="number"/>
+    </resultMap>
+
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 将namespace的值设置为DAO类对应的路径 -->
+<mapper namespace="cn.it.dao.QuestionnaireDao">
+    <select id="getCount" parameterType="int" resultType="int">
+       SELECT count(*) from questionnaire where student_id=#{student_id}
+    </select>
+
+    <insert id="addQuestionnaire" parameterType="cn.it.entity.Questionnaire">
+        INSERT INTO questionnaire(student_id,extraversion,socialSkills) VALUES(#{questionnaire.student_id}, #{questionnaire.extraversion},#{questionnaire.socialSkills})
+    </insert>
+
+    <delete id="deleteQuestionnaire" parameterType="int">
+        DELETE FROM questionnaire WHERE student_id=#{student_id}
+    </delete>
+
+    <update id="updateQuestionnaire" parameterType="cn.it.entity.Questionnaire">
+        UPDATE questionnaire SET extraversion=#{questionnaire.extraversion}, socialSkills=#{questionnaire.socialSkills} WHERE student_id=#{questionnaire.student_id}
+    </update>
+
+    <select id="selectQuestionnaire" parameterType="int" resultMap="questionnaire">
+        SELECT * FROM questionnaire where student_id=#{student_id}
+    </select>
+
+    <resultMap id="questionnaire" type="cn.it.entity.Questionnaire">
+        <id property="student_id" column="student_id"/>
+        <result property="extraversion" column="extraversion"/>
+        <result property="socialSkills" column="socialSkills"/>
+    </resultMap>
+</mapper>

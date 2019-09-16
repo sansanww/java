@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.it.dao.RecordDao">
+    <insert id="insertRecord" parameterType="Record">
+        INSERT INTO record(giftId,customerId,gift,description)
+        VALUES
+        (#{record.gift.id},#{record.customerId},#{record.gift.gift},#{record.gift.description})
+    </insert>
+</mapper>
